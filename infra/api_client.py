@@ -20,24 +20,25 @@ class Apiclient:
     def __init__(self, base_url, headers):
         self.base_url = base_url
         self.headers = headers
+        self.timeout = 2
 
     def send_post(self,post_fix, json):
-        response = requests.post(self.base_url + post_fix, json=json, headers=self.headers)
+        response = requests.post(self.base_url + post_fix, json=json, headers=self.headers,timeout=self.timeout)
         return AssertResponse(response)
 
     def send_get(self,post_fix, params = None):
-        response =  requests.get(self.base_url + post_fix, params=params, headers=self.headers)
+        response =  requests.get(self.base_url + post_fix, params=params, headers=self.headers,timeout=self.timeout)
         return AssertResponse(response)
 
     def send_patch(self,post_fix, json):
-        response =  requests.patch(self.base_url + post_fix, json=json, headers=self.headers)
+        response =  requests.patch(self.base_url + post_fix, json=json, headers=self.headers,timeout=self.timeout)
         return AssertResponse(response)
 
     def send_put(self,post_fix,json,params = None):
-        response =  requests.put(self.base_url + post_fix, json=json,params=params, headers=self.headers)
+        response =  requests.put(self.base_url + post_fix, json=json,params=params, headers=self.headers,timeout=self.timeout)
         return AssertResponse(response)
 
     def send_delete(self,post_fix, params = None):
-        response =  requests.delete(self.base_url + post_fix, params=params, headers=self.headers)
+        response =  requests.delete(self.base_url + post_fix, params=params, headers=self.headers,timeout=self.timeout)
         return AssertResponse(response)
 

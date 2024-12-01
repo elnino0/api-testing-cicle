@@ -1,3 +1,5 @@
+import time
+
 import pytest
 from infra.api_client import Apiclient
 from infra.utils import generate_data, run_service, wait_until_service_up, close_service, user_auth
@@ -88,9 +90,12 @@ class TestLoad:
         close_service(is_delete_container)
 
     def test_loadtest(self,data):
+        start_time = time.time()
         for i in range(1000):
             self.client.send_post(post_fix="/assets", json=data("asset")).assert_status(201)
-
+        end_time = time.time()
+        execution_time = end_time - start_time
+        assert execution_time < 60
 
 
 
